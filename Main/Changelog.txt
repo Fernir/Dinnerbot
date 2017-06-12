@@ -1,0 +1,523 @@
+Changelog:
+	0.0.1: Feb 6, 2014	- Macros only function when WoW is in foreground.
+						- Added GUI State to optimize code. (Used to refresh player structure and info while not ingame)
+
+	0.0.1: Feb 8, 2014	- Fix attempt for ClickToTeleport crashes. (Changed CTM action parameter in stack to idle before teleport)
+	0.0.1: Feb 9, 2014	- Fixed the BG Queue alert. (Accidently changed equality).
+	0.0.2: Feb 13, 2014	- Major ClickToTeleport fix. (Last fix didn't work)
+							- Fixed crash when player would logout and back in.
+							- Fixed loadscreen crash.
+							- Fixed origin bug where player would click on undefined location, and it would teleport to (0, 0, 0)
+								- Consequently fixed most of the crashes.
+						- Polished gamestate logic.
+						- Added local player dump button in debug tab.
+						- Fixed possible F-key teleport crash.
+
+	0.0.2 Feb 18, 2014	- Fixed all attach bugs regarding load screens. (Polished the polish | LOLNOPE).
+						- Added a CTM activator before the ClickToTeleport routine. (Pointers to pointers to pointers with a mask)
+
+	0.0.2 Feb 19, 2014  - Added a few fishing bot logic checks.
+						* Need to improve fishing bot logic. (*)
+
+	0.0.2 Feb 19, 2014  - Cleaned up dialog proc code. (Now it's much more modular)
+						- Added game state check to all in-game code.
+						- Added tools tab
+							- Added interact with target button.
+							- Added follow target button.
+							- Added radar tools button.
+								- Added treeview object list.
+									- On-expand refresh
+									- On-select enumeration. (Slow...)
+									- Added 3 object types to enumeration.
+
+	0.0.2 Feb 20, 2014	- Fixed CTM activator. (Added mask check)
+						- Radar now works properly. (Could be more efficient)
+						- Added dump addresses button to debug tab.
+						- Added player state checks to follow button in debug tab.
+						- Changed radar tools dialog to object list dialog. (Feels compact)
+							- Removed who's targetting me button. (Didn't do anything anyhow)
+							- Slimmed the whole dialog down to the treeview control.
+							* NPC Editor on dbl click of a unit.
+
+	0.0.2 March 06, 2014	- Fixed bug where program would hang on exit in certain situations.
+	0.0.2 March 13, 2014	- Added hide WoW button.
+
+	0.0.2 April 19, 2014	- Added "Turn To Target" button.
+							- Added StopFall function before F-key teleport functions. (F1, F2)
+
+	0.0.2 April 26, 2014	- Added target on double click to radar tools. (Occasionally crashes | Removed for now)
+							- Added new functions that are mainly for calling WoW subroutines.
+
+	0.0.2 April 28, 2014	- Fixed SendChatMessage and understood calling conventions.
+							* Proposed hooking CGWorldFrame__Render in order to fix race condition crashes.
+
+	0.0.3 April 29, 2014	- Added Warden Anti-Cheat detection and precautions.
+								- Unload Warden.
+								- Initialize Warden.
+								- Check Warden Module Address.
+								- Tested effectiveness with 4 accounts. 
+								  3 of them had Warden enabled and were banned. (2 wallclimb accounts within 4 minutes.)
+								  The other one had Warden disabled, and lasted for 2 hours and is still active. (wallclimb)
+
+	0.0.3 April 30, 2014	- Fixed fishing bot logic.
+							- Added dynamic memory allocation to Chat functions.
+							- Improved in-game state logic.
+
+	0.0.3 May 03, 2014	- Major improvement in efficiency. (1% CPU -> 0% on average).
+						- Added ObjectWatch dialog
+							* Report object found in game or in dinnerbot. (*)
+
+	0.0.3 May 06, 2014	- Attempted to fix fishing engine. (Randomly stops working...)
+						* Planning to change main engine to fetch local player info when needed. (*)
+						  (Currently fetches all player info every 30 milliseconds.
+						* Need to investigate source of 25%+ CPU anomaly (Hasn't happened in yeeeeears).
+
+	0.0.3 May 07, 2014	- Object Watch is now fully functional.
+						- Another attempt at fixing detach bugs.
+						- Added movement state and movement speeds to unitfield.
+						- Single RPM for object fields.
+						- Reduced CPU usage made by fishing bot.
+
+	0.0.3 May 08, 2014	* Disable rendering for background botting. (Less CPU usage | Approx. 1% less) (*)
+						* Investigate object list crashes.
+						- Fixed detach bugs.
+						- Added Render settings.
+							- Render M2.
+							- Render WMO.
+							- Render Terrain.
+							- Render Water.
+
+	0.0.3 May 11, 2014	- Added Hack Watcher (Basic code)
+							* Samples taken. (*)
+							* Get movement state before adding sample. (*)
+							* Sample when 0x80000001. (*)
+							* If current speed is not 0, then add a sample. (*)
+							* etc. (*)
+
+	0.0.3 May 13, 2014	* Trivia bot solver
+							* Search through database for question, return answer, etc.
+							* Find current question being asked.
+							* "Enter Triviabot host" dialogue.
+
+	0.0.3 May 15, 2014	- Attempted to fix race condition crashes (rare).
+							- NtSuspendProcess, NtResumeProcess before and after creating the remote thread, respectively.
+							- Buttons for resuming and suspending wow added.
+						* Function caller (Debug tab)
+							* Drop-down list full of various important functions.
+								* AddChatMessage, WoWConsoleWrite, CastSpellById, ClickToMove, etc.
+
+	0.0.3 May 16, 2014	- Added fog density editor.
+
+	0.0.3 May 17, 2014	- Added fog color patch to enable custom environments (malu05 is great).
+
+	0.0.3 May 29, 2014 - * Change Packet_SMSG_WARDEN_DATA Opcode received to anything other than 0x2E6 (0x277 preferably).
+							* Hook Packet_SMSG_WARDEN_DATA.
+
+	0.0.3 June 27, 2014 - Added Hardcoded fishing profile.
+
+	0.0.4 July 03, 2014 - Teleport button added.
+
+	0.0.4 July 06, 2014	- Track Hidden Search Feature.
+
+	0.0.4 October 11, 2014 - Added MapID, ZoneID, and Targetlist.
+
+	0.0.4 October 14, 2014 - Added Traceline functionality.
+
+	0.0.4 October 15, 2014 - Added Human Starting zone to Goldshire path and Goldshire parkour profile.
+
+	0.0.4 October 19, 2014 - Added wireframe rendering.
+
+	0.0.4 October 22, 2014 - * Fix click to teleport when casting
+
+	0.0.4 January 10, 2015 - * Hook SendTo, Send, RecvFrom, Recv for WPE-like hacks
+								* Name hack
+								* Desync hack
+								* Cross-faction translation hack.
+
+	0.1.0 January 12, 2015 - Fixed account name and player name window text updates.
+						   - Added checkboxes to DFish.
+								- Logout on finish.
+								- Hide when player is nearby.
+						   - Added rendering checkboxes to hacks tab.
+								- Wireframe
+								- WMO
+								- M2
+								- Water
+								- Terrain
+								- HorizonMountains
+
+	0.1.0 January 13, 2015 - Fixed TargetObject function and added object targetting on double click to the radar.
+						   - Added language hack (understand enemy faction).
+
+	0.1.0 January 14, 2015 - Cleaned up hook handler code.
+						   - Fix attempt on language hack. It allowed addon messages to be displayed in game. (if type == 1, then lang = 0)
+
+	0.1.1 January 15, 2015 - Added language hack hook state to hook handler.
+						   - Removed language hack hook state from CTT hook state.
+						   - * Character create name hack and function. (Have to figure out which function to call and how. Can't use CCharCreateInfo::CreateCharacter directly). (*)
+
+	0.1.1 January 16, 2015 - Added patch that removes name filter from character creation. This isn't originally what I wanted, but it's much simpler.
+						   - Fixed thread creation logic for info loop.
+						   - Removed dynamically allocated strings from object watch as an attempt to fix memory leak.
+						   - Added FrameScript::Execute functionality for running lua in WoW.
+
+	0.1.1 January 17, 2015 - Added CGLootWindow and CGLootInfo functions for gatherer.
+								- CurrentObjectBeingLooted, LootSlot, IsLootWindowOpen, GetNumLootItems, LootSlotIsCoin, CloseLoot.
+
+	0.1.2 January 19, 2015 - Added EndScene hook for main thread execution. This will be of much benefit as functions that are not thread safe won't crash WoW anymore.
+						   - Functions such as Lua::DoString and Lua::GetText would randomly crash wow, probably due to race conditions.
+								- Calls function if address is nonzero
+								- Stores return for use with subroutines like Lua::GetText.
+						   - Adjusted Lua::DoString() and Lua::GetText() code to work with the EndScene hook.
+
+	0.1.2 January 20, 2015 - Fixed faction language hack.
+						   - * Investigate problem where endscene's hook is not being cleaned. (**) I think it only happens on crashes, and I added a safety restore patch for EndScene.
+
+	0.1.2 January 21, 2015 - Added gathering bot that works well.
+								- * Occasional crash before looting node (suspect). (DONE)
+
+	0.1.2 February 03, 2015 - Efficiency change: Moved FreeInventorySlots() in FSM code so that it isn't called every ~50 miliseconds. 
+							- * Investigate bug on Run Lua. "Randomly" doesn't run and sometimes throws exceptions. 
+								This is likely the result of attempting to run lua while the fishing bot is running lua. A possible solution
+								is a queue system, or a mutex of some sort. It doesn't seem to happen with the efficiency change.
+							- * Investigate change process bug that crashes the program. (DONE)
+							- * Investigate bug where program exits immediately after starting (wat). (DONE)
+
+	0.1.2 February 04, 2015 - * World map click to teleport (Sounds hard) (Done).
+
+	0.1.2 February 07, 2015 - Added fly hack edit and check box, along with its associated cleanup code.
+
+	0.1.2 February 09, 2015 - * Dump addresses crashes on laptop. Buffer is too small?
+
+	0.1.2 February 15, 2015 - * "Retaliate" option for bot. (joke)
+							- Added PreAnimate patch for cool weird animation hack.
+
+	0.1.2 February 18, 2015 - Added Gathering tab and related rudimentary features.
+
+	0.1.2 February 20, 2015 - Added wow responsiveness checks and dinnerlog file size limit.
+							- Changed memory hook queue code to be more efficient and effective. Now uses dialog checkboxes for game state change hooks.
+
+	0.1.2 February 21, 2015 - Added Dinnerchat, enabling remote command over bot.
+
+	0.1.2 February 22, 2015 - Added GetOsAsyncTime to fix timestamp difference. Consequently, there is a better reponse check for wow.
+							- Added Dinnerchat checks for already registered code and other functions.
+								- DPing, DPong for checking if character has Dinnerchat running.
+								- DSend as a shortcut to SendAddonMessage
+
+	0.1.2 February 23, 2015	- Hopefully fixed problem where program wouldn't even start. (Returning pointers to strings is bad sometimes).
+							- Added a few functions to dinnerchat.
+
+	0.1.3 February 24, 2015 - Made LogAppend more efficient by actually appending text to the end of the log instead of replacing the whole log.
+								- Macro for log text limit is LOG_MAX, which is currently set to 200000.
+								- If the log surpasses the text limit, it will clear the log.
+							- Discovered and fixed bug that would crash wow after a few reattaches. This was due to multiple info loops running where only one should have been running.
+							- Changed info loop to use a static bool instead of passing it every time.
+							- Rearranged other code for stability.
+							- * Mutex or critical section for Lua::DoString, etc.
+
+	0.1.3 February 27, 2015 - Modified object watch for multiple objects.
+							- Added garbage lua garbage collection as a hopeful fix for the random lua related crash.
+
+	0.1.4 March 01, 2015 - Added in game player count and proper dinner UI.
+
+	0.1.4 March 03, 2015 - Fixed IsCasting, fixed gathering bot logic, tested a few more functions for updating player position, and added a herb profile with some extra mining nodes as well.
+
+	0.1.5 March 04, 2015 - * WARDENNNNNNNN
+						 - * Multiple DThreads are spawning. 
+						 - * Horde/Ally translator is detected. That is, AddChatMessage hook is checked.
+						 - Don't change Warden scan size to 0, results in ban.
+
+	0.1.5 March 17, 2015 - Added slash commands to dinnerchat
+							- /dr is dreply.
+
+	0.1.5 March 18, 2015 - Fixed fishing bot.
+
+	0.1.5 March 19, 2015 - Reversed IsFlying properly.
+						 - Changed fly hack state (0x3000000 now).
+						 - Added gathering mode combo box.
+
+	0.1.5 March 23, 2015 - Fixed thread handlers, so bots should be able to stop.
+						 - Added frame checks for dinnerchat, so errors aren't thrown.
+						 - Added bot timer.
+
+	0.1.6 March 29, 2015 - Added translator and in game chat handler.
+						 - Added chat mimic and chat bubble caller.
+						 - Added command input edit box at the bottom of dinner and a few commands.
+
+	0.1.6 May 10, 2015	 - Added DGetReturn function to Dinnerchat
+						 - Changes to Debug().
+
+	0.1.6 May 14, 2015   - Added tracking functions
+
+	0.1.7 May 16, 2015   - Added list of zone borders from WorldMapArea.dbc
+						 - Consequently, this allows for click to teleport on world map, minimap. 
+						 - Cool stuff, etc.
+
+	0.1.7 July 18, 2015	 - Meerface watched me write this.
+
+	0.2.0 August 11, 2015	- * Fix gathering bot (Good enough for now)
+								- * Sort waypoint list by distance for efficiency. (DONE)
+								- * Set swimming speed to same as fly speed. (DONE)
+								- * Make sure to let node load in before searching; flying around like this can be a bit fast. (DON'T NEED)
+								- * Make note of nodes on the way to waypoint. (DONE)
+								- * Sometimes get stuck in instances, so fly z += 1000, then teleport down to the node when 
+
+	0.2.0 August 12, 2015	- Added random Dinner name from list of names.
+							- Gathering bot is now working again with decent functionality. Need to test.
+
+	0.2.1 August 13, 2015	- ADEEEE
+							- Fixed weird falling during gathering state of bot.
+							- Fixed swimming speed for gathering bot.
+							- Added temporary blacklist for nodes to bypass players. 
+							- Changed fly hack type.
+
+	0.2.1 August 17, 2015	- * GetUnitReaction for gatherer. This is because player gets combat bugged and eventually dies from not being able to stealth.
+								- Fixed by s
+
+	0.2.2 December 16, 2015 - Added Freeze Z for new fly hack method.
+							- Freeze Z and set run speed to high allows for a more efficient gathering bot now.
+							- Retracted method
+
+	0.2.2 January 02, 2016	- Fixed ingame chat logger so that it catches all (99 %) messages.
+							- Added guild chat logger -> chatlog.txt.
+
+	0.2.2 January 06, 2016	- Added chat logger status which outputs to -> status.txt. This is used for the website's guild chat.
+
+	0.2.2 January 09, 2016	- Added login list for lazy logins.
+
+	0.2.2 January 22, 2016	- Added character rename hack to allow for explicit names for characters flagged for rename.
+
+	0.2.2 February 13, 2016 - Added in game Lua DoString via CVars.
+							- Changed dialog layout to be wider.
+
+	0.2.2 February 15, 2016 - Code cleanup to various sections
+								- Moved functions from Dinnerbot.cpp to Chat.cpp, Memory.cpp, etc.
+							- Changed Endscene hook cleanup behavior to not be unhooked when not ingame. It only unhooks when changing processes or when wow closes, etc.
+
+	0.2.2 February 16, 2016	- Cleaned up DialogProc code to be modular and short.
+								- Moved all body code to onEvent functions.
+							- Added warden functions to command input.
+							- Cleaned up HandleCommand code for modularity.
+							- Changed main dialog to modeless to allow for processing WM_KEYDOWN messages.
+								- VK_UP, VK_DOWN for command input box.
+
+	0.2.2 April 02, 2016	- Added relogger for guild chat logger.
+
+	0.3.0 May 09, 2016		- Added CObject class for more object-oriented programming.
+							- Cleaning up various areas of code.
+							- Comments on HandleInputCommand
+							- Changed Gathering bot so that it doesn't use fly hacks.
+
+	0.3.0 May 11, 2016		- Added namespaces for DinnerChat, Lua.
+							- Added CUnit class which inherits CObject.
+
+	0.3.0 May 16, 2016		- Large code cleanup with Memory, Lua, CObject, etc namespaces and classes.
+							- Added new functions to dinnerchat command list.
+							- * Plan to add Outlands world borders for !goto command. (Done)
+							- Fixed outlands world borders and added special zone conversion.
+							- IsThreatWarningEnabled for DinnerChat ingame execution. (Not a good choice - 18/06/2016)
+
+	0.3.0 May 18, 2016		- * Investigate "Can't do that right now" error message in middle of the screen. (Blade's Edge Mountain (Addon?) Glitch - Thanks Andreeeeea).
+							- * luacvar handle leak. (FIXED; Handle leak on CreateThread)
+							- * FlyHack bugs out when attaching to wow while on a flying mount.
+							- * Investigate double luacvar parse (seems to be FIXED)
+							- * Investigate luacvar crash (poate a result of AddChatMessage calls). (Done?)
+							- * Mover class/namespace/enginge for bots. Moves to a given waypoint.
+							- * Fishing bot return to dalaran for mail, repair, etc.
+
+	0.3.0 May 22, 2016		- * Fishing profile drop box. (Done)
+
+	0.3.0 May 22, 2016		- Added bit masks for consolekey parsing and newmap toggles from game.
+
+	0.3.1 May 29, 2016		- Fixed Command follow object, interact with object, and turnto object commands.
+							- Code cleanup: Moved dialog related code into a new source called Dialog.cpp.
+							- Added Command Callback for ingame lua code.
+							- Cleaned up render hacks and put them into their own Render namespace
+							- Added render hacks to the Command code.
+
+	0.3.1 June 08, 2016		- Added classes: HTML, Guild, GuildEntry for guild roster website mirror.
+							- Added classes: ClientDB for reading ingame DB row and extracting class name from guild entry.
+
+	0.3.1 June 10, 2016		- Implemented proper DBC header reading and method GetRow.
+
+	0.3.1 June 13, 2016		- Fixed HTML to cooperate with guild website.
+
+	0.3.1 June 16, 2016		- Changed AntiAFK() to use OsGetAsyncTime. Reading from the timestamp was causing issues for some reason. 
+								The Timestamp seemed to stop updating, although OsGetAsyncTime would still work properly.
+
+	0.3.1 June 17, 2016		- * Make Endscene hook more responsive and immediate. (Done)
+							- * Use lua for realm select, etc and character select. (Done)
+
+	0.3.2 June 18, 2016		- Added Command namespace and Command.cpp for organization.
+							- Added Dinner namespace to Lua portion of DinnerChat.
+							- Renamed SetupEndSceneCaller to InitEndSceneCaller.
+							- Changed Endscene hook behaviour to always be hooked.
+							- Added DinnerChat::created variable to handle in game dinnerchat.
+								- onLeavingWorld => created = false
+								- ExitDinner => created = false
+								- DinnerChat::Setup => created = true
+
+	0.3.2 June 19, 2016		- Resized Run Lua window so it is actually a small lua script editor.
+
+	0.3.3 June 28, 2016		- * Drawing Radar for waypoints, etc (Done)
+								- * Click on Radar to map to ingame coords to create quick paths. (Done sort of).
+								- * Connect nodes to create meshes for pathfinding. (Done)
+							- * Pathfinding. (Done)
+							- * Object manager class for iteration using classses CObject, etc.
+							- Added Radar with GDI rendering to display players, units, etc.
+								- GraphicsObject.cpp, Drawing.cpp.
+
+	0.3.3 June 29, 2016		- * Add Radar tab or button with render settings for object types.
+
+	0.3.3 July 07, 2016		- Added Pathfinding.cpp, Drawing.cpp, Graphics.cpp, 
+							- poly2tri Triangulation library for arbitrary polygons.
+							- Fully functioning radar.
+							- Navmesh creation.
+							- A* search algorithm using triangles as nodes and centroid distance as fcost (should probably change to manhattan distance or something else).
+
+	0.3.3 August 09, 2016	- Cleaned up fishing code.
+							- Added fishing profiles.
+							- Fixed fishing bot.
+
+	0.3.3 August 14, 2016	- Added MeshExport.cpp, XML.cpp, XMLTag.cpp classes to prepare for mesh profiles.
+
+	0.3.3 August 15, 2016	- Fixed bot timers.
+
+	0.3.3 August 16, 2016	- Really cleaned up the fishing bot code with comments and switched over to object classes (CUnit, CObject).
+							- *Still need to clean up Gathering.cpp.
+							- Cleaned up Warden.cpp a little.
+
+	0.3.3 August 17, 2016	- Fixed fishing bot's player detector.
+							- * Convert triangles to XML/some file format. (Done)
+
+	0.3.3 August 18, 2016	- Fixed fishing bot's profile zone detection.
+							- * Find way to test if DinnerChat is active in-game. (Done)
+
+	0.3.3 August 21, 2016	- Made DinnerChat bitmask more responsive, hopefully it works.
+
+	0.3.4 August 22, 2016	- Changed LocalPlayer from Object to CObject (lots of work).
+							- Changed Endscene from a jmp patch hook to a vtable hook. It seems to be more stable.
+							- Added in-game DinnerLua greeting message.
+							- Changed info loop behaviour. Ends thread on change process, and creates new thread upom attaching.
+
+	0.3.4 August 24, 2016	- Added Mesh importing and exporting for use with pathfinding.
+							- Utilizes pugixml to parse and create XML files.
+							- Rewrite of Thread.cpp to include class and object-oriented style threads.
+
+	0.3.4 August 25, 2016	- Added module cache to see if endscene has been hooked.
+
+	0.3.4 August 26, 2016	- Moved changelog to Changelog.txt. I'll keep the old changelog in Dinnerbot.cpp for backwards compatibility.
+	
+	0.3.4 August 27, 2016	- Added NetEditor.cpp and organized code further.
+
+	0.3.4 August 28, 2016	- Added Dinner.Import(page) to import lua code from WowLua to run.
+
+	0.3.5 August 29, 2016	- NetEditor is now functioning properly.
+								- Add contour point.
+								- Add hole point.
+								- Close hole/contour.
+								- Triangulate net (convert into triangles).
+								- Load/save net into xml file format.
+
+	0.3.5 August 30, 2016	- Major overhaul of project directory structure.
+
+	0.3.5 September 01, 2016 - Finished directory structure change, after nearly 2 days straight of work.
+							 - Removed Eigen library.
+							 - Fixed DinnerLua not loading bug (endscene wait = NULL was the problem).
+							 - Large code cleanup.
+							 - Despite these changes, endscene and threads are relatively unstable, caushing dinner crashes and WoW crashes.
+
+	0.3.5 September 03, 2016 - Added Morpher.
+
+	0.3.6 September 05, 2016 - Added CombatEngine namespace with Action.cpp, Condition.cpp and Rotation.cpp.
+							 - Still lots of work is required to finish this.
+
+	0.3.6 September 07, 2016 - Added Engine.cpp to CombatEngine namespace and tested functionality.
+
+	0.3.6 September 08, 2016 - Fixed fishing bot not properly stopping and fishing dialog button bug.
+
+	0.3.6 September 09, 2016 - Changed mana into power with appropriate power types (rage, energy, runic power, mana).
+
+	0.3.6 September 10, 2016 - Added functionality to radar settings. It handles different object types properly now.
+							 - * Create bitmap button with GDI in radar for settings.
+
+	0.3.6 September 11, 2016 - Added GetZoneText and GetSubZoneText for radar and others.
+
+	0.3.6 September 12, 2016 - Attempted to fix Endscene access violation.
+							 - Added Radar zone text.
+
+	0.3.6 December 14, 2016 - * Make relogger more responsive and reliable.
+							- * Add date Pont started logging in guildchat log. (should be easy)
+
+	0.3.7 December 16, 2016 - Changed "!objsearch" -> "!object" -> "!search".
+							- Renamed Command namespace to Commands.
+							- Added Command class.
+							- OOP Commands make extensions easier.
+							- Added collision hacks to command list.
+
+	0.3.7 December 19, 2016 - * Add ObjectManager Class and etc
+							- * Think about injecting dll into WoW and communicate with dinner via pipes.
+							- * Relogger using Lua only?
+								- * When we're at the login screen, inject lua relogger script and call its functions when needed.
+								- * Choose realm, character, server, user, pass, etc.
+								- * Handle change of states and all that.
+								- * Detect when Authenticating bug is happening by way of timeout on seeing that prompt.	
+								    We would need to be able to detect frames on the screen.
+							- * Work on combat engine
+							- * Work on nets
+							- * Endscene action queue.
+
+	0.3.7 December 20, 2016 - Converted Endscene into class, and renamed some methods to be more descriptive.
+							- Convereted other asm injections into using the new Stub class.
+
+	0.3.7 December 22, 2016 - * Investigate no fall damage hack.
+								- 0073D4BF: jnz short loc_73D4D9 -> nopslide
+								- 0073D4D7: jnz short loc_73D503 -> jmp loc_73D503
+
+							- * WorldFrame__Render push ebp -> retn
+
+	0.3.7 December 23, 2016 - * Think about hooking warden's scan module, since the collision hack is detected.
+							- Added CGWorldFrame__Render patch.
+							- Added no fall damage hack.
+							- Changed command protoype to pass by reference.
+							- * Look into SetFacing for bot navigation.
+							- Spell class, needs more work.
+
+	0.3.7 December 24, 2016 - Improved loot local command.
+
+	0.3.7 December 25, 2016 - Renamed, rearranged combat engine.
+							- Engine namespace with Combat and Navigation engines.
+							- Thread class enums, ClickToMove.cpp, Navigation walker, etc.
+
+	0.3.7 December 26, 2016 - Fixed dframe player count error.
+							- Added NetEditor show path functions.
+							- Cleaned up Radar with RenderObject class and proper memory management.
+							- Fixed NetEditor to follow shown path properly.
+							- Combined both closehole, closecontour -> close with case handling.
+							- * NetEditor::Action class for undo, redo etc.
+
+	0.3.7 December 29, 2016 - Added Multiboxing.
+
+	0.3.7 January 01, 2017  - * Investigate AddChatMessage crash (possibly due to race condition with other addchatmessage in-game).
+
+	0.3.7 January 02, 2017 - Added radar markings
+						   - ClientDB WoWVariable, etc
+
+	0.3.7 January 03, 2017 - Added getSpellIdByName (lots of reversing).
+
+	0.3.8 January 07, 2017 - Remade fishing bot with classes.
+
+	0.3.8 January 09, 2017 - Made a few changes to Pont, to show offline or online.
+						   - Pont should report unknown zones as "".
+
+	0.3.8 January 10, 2017 - Made fishing bot's hide more responsive.
+						   - Fishing bot's fsm is much faster now.
+
+	0.3.9 March 27, 2017   - Added movement desync hack
+
+	0.4.0 April 26, 2017   - Added X's to radar to indicate dead units
+						   - Added !version to Commands list
+						   - Generalized output of commands in Command.cpp
+						   - 
+
+	390 - gandalf the mini
